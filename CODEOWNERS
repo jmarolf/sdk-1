@@ -64,6 +64,11 @@
 /src/Tests/Microsoft.AspNetCore.Watch.BrowserRefresh.Tests/       @captainsafia, @pranavkm, @mkArtakMSFT
 /src/BuiltInTools/   @captainsafia, @pranavkm, @mkArtakMSFT
 
+# Area-Cleanup
+/src/Tests/dotnet-format.Tests/ @jmarolf @JoeRobich
+/src/BuiltInTools/dotnet-format/ @jmarolf @JoeRobich
+/src/Layout/tool_format/ @jmarolf @JoeRobich
+
 # Compatibility tools owned by runtime team
 # Area-Compatibility
 /src/Compatibility/ @Anipik, @safern, @ericstj
