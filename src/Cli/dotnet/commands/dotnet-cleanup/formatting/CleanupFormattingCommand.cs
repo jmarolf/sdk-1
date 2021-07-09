@@ -7,21 +7,17 @@ using System.CommandLine.Parsing;
 
 namespace Microsoft.DotNet.Cli
 {
-    public class CleanupCommand : AbstractCleanupCommand
+    internal class CleanupFormattingCommand : AbstractCleanupCommand
     {
-        protected override string ParseFrom => "dotnet cleanup";
+        protected override string ParseFrom => "dotnet cleanup formatting";
 
         protected override List<string> AddArgs(ParseResult parseResult)
         {
             var dotnetFormatArgs = new List<string>();
             dotnetFormatArgs.AddCommonDotnetFormatArgs(parseResult);
             dotnetFormatArgs.AddFormattingDotnetFormatArgs(parseResult);
-            dotnetFormatArgs.AddStyleDotnetFormatArgs(parseResult);
-            dotnetFormatArgs.AddAnalyzerDotnetFormatArgs(parseResult);
             dotnetFormatArgs.AddProjectOrSolutionDotnetFormatArgs(parseResult);
             return dotnetFormatArgs;
         }
-
-        public static int RunCommand(string[] args) => new CleanupCommand().Run(args);
     }
 }

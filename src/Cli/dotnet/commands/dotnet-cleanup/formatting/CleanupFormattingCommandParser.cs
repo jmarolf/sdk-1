@@ -8,21 +8,16 @@ using System.Threading.Tasks;
 
 namespace Microsoft.DotNet.Cli
 {
-    internal static partial class CleanupCommandParser
+    internal static class CleanupFormattingCommandParser
     {
-        private static readonly CleanupCommandDefaultHandler s_cleanupCommandHandler = new();
 
+        private static readonly CleanupFormattingHandler s_formattingHandler = new();
         public static Command GetCommand()
         {
-            var cleanupCommand = new Command("cleanup")
+            var command = new Command("formatting")
             {
                 CleanupCommandCommon.SlnOrProjectArgument,
-                CleanupFormattingCommandParser.GetCommand(),
-                CleanupStyleCommandParser.GetCommand(),
-                CleanupAnalyzersCommandParser.GetCommand(),
                 CleanupCommandCommon.NoRestoreOption,
-                CleanupCommandCommon.DiagnosticsOption,
-                CleanupCommandCommon.SeverityOption,
                 CleanupCommandCommon.IncludeOption,
                 CleanupCommandCommon.ExcludeOption,
                 CleanupCommandCommon.IncludeGeneratedOption,
@@ -30,14 +25,14 @@ namespace Microsoft.DotNet.Cli
                 CleanupCommandCommon.BinarylogOption,
                 CleanupCommandCommon.ReportOption
             };
-            cleanupCommand.Handler = s_cleanupCommandHandler;
-            return cleanupCommand;
+            command.Handler = s_formattingHandler;
+            return command;
         }
 
-        class CleanupCommandDefaultHandler : ICommandHandler
+        class CleanupFormattingHandler : ICommandHandler
         {
             public Task<int> InvokeAsync(InvocationContext context)
-                => Task.FromResult(new CleanupCommand().FromArgs(context.ParseResult).Execute());
+                => Task.FromResult(new CleanupFormattingCommand().FromArgs(context.ParseResult).Execute());
         }
     }
 }

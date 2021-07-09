@@ -8,20 +8,16 @@ using System.Threading.Tasks;
 
 namespace Microsoft.DotNet.Cli
 {
-    internal static partial class CleanupCommandParser
+    internal static class CleanupStyleCommandParser
     {
-        private static readonly CleanupCommandDefaultHandler s_cleanupCommandHandler = new();
+        private static readonly CleanupStyleHandler s_styleHandler = new();
 
         public static Command GetCommand()
         {
-            var cleanupCommand = new Command("cleanup")
+            var command = new Command("style")
             {
                 CleanupCommandCommon.SlnOrProjectArgument,
-                CleanupFormattingCommandParser.GetCommand(),
-                CleanupStyleCommandParser.GetCommand(),
-                CleanupAnalyzersCommandParser.GetCommand(),
                 CleanupCommandCommon.NoRestoreOption,
-                CleanupCommandCommon.DiagnosticsOption,
                 CleanupCommandCommon.SeverityOption,
                 CleanupCommandCommon.IncludeOption,
                 CleanupCommandCommon.ExcludeOption,
@@ -30,14 +26,14 @@ namespace Microsoft.DotNet.Cli
                 CleanupCommandCommon.BinarylogOption,
                 CleanupCommandCommon.ReportOption
             };
-            cleanupCommand.Handler = s_cleanupCommandHandler;
-            return cleanupCommand;
+            command.Handler = s_styleHandler;
+            return command;
         }
 
-        class CleanupCommandDefaultHandler : ICommandHandler
+        class CleanupStyleHandler : ICommandHandler
         {
             public Task<int> InvokeAsync(InvocationContext context)
-                => Task.FromResult(new CleanupCommand().FromArgs(context.ParseResult).Execute());
+                => Task.FromResult(new CleanupStyleCommand().FromArgs(context.ParseResult).Execute());
         }
     }
 }

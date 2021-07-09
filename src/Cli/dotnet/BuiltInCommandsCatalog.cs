@@ -51,7 +51,7 @@ namespace Microsoft.DotNet.Cli
             },
             ["cleanup"] = new BuiltInCommandMetadata
             {
-                Command = CleanupCommand.Run,
+                Command = CleanupCommand.RunCommand,
                 // aka.ms target: https://docs.microsoft.com/dotnet/articles/core/tools/dotnet-cleanup
                 DocLink = "https://aka.ms/dotnet-cleanup"
             },
